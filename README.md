@@ -122,16 +122,16 @@ graph LR
     IC -.->|"👀 Read Only"| F
     IC -.->|"👀 Read Only"| G
     
-    %% Styling
-    style ORG fill:#f0f4ff,stroke:#1976d2,stroke-width:3px
-    style ACCOUNTS fill:#f0fff0,stroke:#388e3c,stroke-width:3px
-    style IC fill:#fff3e0,stroke:#f57c00,stroke-width:4px,font-size:12px
-    style A1 fill:#ffebee,stroke:#d32f2f,stroke-width:3px,font-size:14px
-    style A2 fill:#e8f5e8,stroke:#388e3c,stroke-width:3px,font-size:14px
-    style A3 fill:#e1f5fe,stroke:#0288d1,stroke-width:3px,font-size:14px
-    style E fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px,font-size:14px
-    style F fill:#e8f5e8,stroke:#388e3c,stroke-width:3px,font-size:14px
-    style G fill:#ffebee,stroke:#d32f2f,stroke-width:3px,font-size:14px
+    %% Styling with black text
+    style ORG fill:#f0f4ff,stroke:#1976d2,stroke-width:3px,color:#000000
+    style ACCOUNTS fill:#f0fff0,stroke:#388e3c,stroke-width:3px,color:#000000
+    style IC fill:#fff3e0,stroke:#f57c00,stroke-width:4px,color:#000000
+    style A1 fill:#ffebee,stroke:#d32f2f,stroke-width:3px,color:#000000
+    style A2 fill:#e8f5e8,stroke:#388e3c,stroke-width:3px,color:#000000
+    style A3 fill:#e1f5fe,stroke:#0288d1,stroke-width:3px,color:#000000
+    style E fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px,color:#000000
+    style F fill:#e8f5e8,stroke:#388e3c,stroke-width:3px,color:#000000
+    style G fill:#ffebee,stroke:#d32f2f,stroke-width:3px,color:#000000
 ```
 
 ---
