@@ -5,6 +5,7 @@
 *.tfvars.backup
 .terraform/
 .terraform.lock.hcl
+outfiles/*
 
 # IDE
 .vscode/
