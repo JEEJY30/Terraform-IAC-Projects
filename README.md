@@ -89,7 +89,6 @@ After: Automated, centralized access management
 ## 🎨 Architecture Overview
 
 ```mermaid
-graph TB
 graph LR
     %% Users (larger boxes)
     A1["👨‍💼<br/><b>Admins</b>"]
