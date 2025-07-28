@@ -172,9 +172,8 @@ Found this helpful? Here's how you can contribute:
 
 **Need help implementing this in your organization?**
 
-- 📧 **Email**: [your-email@company.com]
-- 💼 **LinkedIn**: [Your LinkedIn Profile]
-- 🐙 **GitHub**: [Your GitHub Profile]
+- 📧 **Email**: [gio1818ggg@gmail.com]
+- 💼 **LinkedIn**: [https://www.linkedin.com/in/jeejy30/]
 
 ---
 
