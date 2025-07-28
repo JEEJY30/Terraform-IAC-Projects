@@ -90,30 +90,42 @@ After: Automated, centralized access management
 
 ```mermaid
 graph LR
-    %% Users (larger boxes)
-    A1["👨‍💼<br/><b>Admins</b>"]
-    A2["👩‍💻<br/><b>Developers</b>"] 
-    A3["👁️<br/><b>Auditors</b>"]
+    %% AWS Organization and Identity Center (top layer)
+    subgraph ORG["🏢 AWS Organization"]
+        IC["🔐 Identity Center<br/><b>Central SSO Hub</b><br/>arn:aws:sso:::instance/ssoins-7223aa25d5560e68"]
+        
+        %% Users (connect to Identity Center)
+        A1["👨‍💼<br/><b>Admins</b>"]
+        A2["👩‍💻<br/><b>Developers</b>"] 
+        A3["👁️<br/><b>Auditors</b>"]
+        
+        A1 --> IC
+        A2 --> IC
+        A3 --> IC
+    end
     
-    %% AWS Accounts (larger boxes)
-    E["☁️<br/><b>Management<br/>Account</b>"]
-    F["🧪<br/><b>Sandbox<br/>Account</b>"]
-    G["🔒<br/><b>Security<br/>Account</b>"]
+    %% Multi-Account Structure
+    subgraph ACCOUNTS["🏗️ Multi-Account Structure"]
+        E["☁️<br/><b>Management<br/>Account</b><br/>419655711235"]
+        F["🧪<br/><b>Sandbox<br/>Account</b><br/>512378128032"]
+        G["🔒<br/><b>Security<br/>Account</b><br/>798807102550"]
+    end
     
-    %% Connections with readable labels
-    A1 -.->|"🔑 Full Admin"| E
-    A1 -.->|"🔑 Full Admin"| G
+    %% Identity Center manages access across all accounts
+    IC -.->|"Manages Access"| ACCOUNTS
     
-    A2 -.->|"⚡ Developer Tools"| F
-    A2 -.->|"👀 Read Only"| E
-    A2 -.->|"👀 Read Only"| F
-    A2 -.->|"👀 Read Only"| G
+    %% Access flows from Identity Center through permission sets
+    IC -.->|"🔑 Full Admin"| E
+    IC -.->|"🔑 Full Admin"| G
+    IC -.->|"⚡ Developer Tools"| F
+    IC -.->|"👀 Read Only"| E
+    IC -.->|"👀 Read Only"| F
+    IC -.->|"👀 Read Only"| G
     
-    A3 -.->|"👀 Read Only"| E
-    A3 -.->|"👀 Read Only"| F
-    A3 -.->|"👀 Read Only"| G
-    
-    %% Styling for readability
+    %% Styling
+    style ORG fill:#f0f4ff,stroke:#1976d2,stroke-width:3px
+    style ACCOUNTS fill:#f0fff0,stroke:#388e3c,stroke-width:3px
+    style IC fill:#fff3e0,stroke:#f57c00,stroke-width:4px,font-size:12px
     style A1 fill:#ffebee,stroke:#d32f2f,stroke-width:3px,font-size:14px
     style A2 fill:#e8f5e8,stroke:#388e3c,stroke-width:3px,font-size:14px
     style A3 fill:#e1f5fe,stroke:#0288d1,stroke-width:3px,font-size:14px
