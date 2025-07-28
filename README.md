@@ -90,17 +90,64 @@ After: Automated, centralized access management
 
 ```mermaid
 graph TB
-    A[👤 Team Members] --> B[🏢 AWS Identity Center]
-    B --> C[🎭 Permission Sets]
-    B --> D[👥 User Assignments]
-    C --> E[☁️ Management Account]
-    C --> F[🧪 Sandbox Account] 
-    C --> G[🔒 Security Account]
+    %% Users and Groups
+    A1[👨‍💼 Admin Users<br/>admin@company.com] 
+    A2[👩‍💻 Developers<br/>dev1@company.com<br/>dev2@company.com]
+    A3[👁️ Auditors<br/>audit@company.com]
     
-    style A fill:#e1f5fe
-    style B fill:#f3e5f5  
-    style C fill:#e8f5e8
-    style D fill:#fff3e0
+    %% Identity Center
+    B[🏢 AWS Identity Center<br/>Central Hub]
+    
+    %% Permission Sets
+    C1[🔑 AdminAccess<br/>Full Control]
+    C2[⚡ DeveloperAccess<br/>Dev Tools + Limits]
+    C3[👀 ReadOnlyAccess<br/>View Only]
+    
+    %% AWS Accounts
+    E[☁️ Management Account<br/>419655711235]
+    F[🧪 Sandbox Account<br/>512378128032]
+    G[🔒 Security Account<br/>798807102550]
+    
+    %% User to Identity Center
+    A1 --> B
+    A2 --> B
+    A3 --> B
+    
+    %% Identity Center to Permission Sets
+    B --> C1
+    B --> C2
+    B --> C3
+    
+    %% Permission Set Assignments to Accounts
+    C1 --> E
+    C1 --> G
+    C2 --> F
+    C3 --> E
+    C3 --> F
+    C3 --> G
+    
+    %% Assignment Mappings (dotted lines show who gets what)
+    A1 -.-> C1
+    A2 -.-> C2
+    A2 -.-> C3
+    A3 -.-> C3
+    
+    %% Styling
+    style A1 fill:#e3f2fd,stroke:#1976d2
+    style A2 fill:#e8f5e8,stroke:#388e3c
+    style A3 fill:#fff3e0,stroke:#f57c00
+    style B fill:#f3e5f5,stroke:#7b1fa2
+    style C1 fill:#ffebee,stroke:#d32f2f
+    style C2 fill:#e8f5e8,stroke:#388e3c
+    style C3 fill:#e1f5fe,stroke:#0288d1
+    style E fill:#f3e5f5,stroke:#7b1fa2
+    style F fill:#e8f5e8,stroke:#388e3c
+    style G fill:#ffebee,stroke:#d32f2f
+    
+    %% Labels for clarity
+    classDef userGroup fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef permissionSet fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    classDef account fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
 ```
 
 ---
