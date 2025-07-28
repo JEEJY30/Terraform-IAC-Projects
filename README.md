@@ -106,9 +106,9 @@ graph LR
     
     %% Multi-Account Structure
     subgraph ACCOUNTS["🏗️ Multi-Account Structure"]
-        E["☁️<br/><b>Management<br/>Account</b><br/>419655711235"]
-        F["🧪<br/><b>Sandbox<br/>Account</b><br/>512378128032"]
-        G["🔒<br/><b>Security<br/>Account</b><br/>798807102550"]
+        E["☁️<br/><b>Management<br/>Account</b><br/>"]
+        F["🧪<br/><b>Sandbox<br/>Account</b><br/>"]
+        G["🔒<br/><b>Security<br/>Account</b><br/>"]
     end
     
     %% Identity Center manages access across all accounts
