@@ -92,7 +92,7 @@ After: Automated, centralized access management
 graph LR
     %% AWS Organization and Identity Center (top layer)
     subgraph ORG["🏢 AWS Organization"]
-        IC["🔐 Identity Center<br/><b>Central SSO Hub</b><br/>arn:aws:sso:::instance/ssoins-7223aa25d5560e68"]
+        IC["🔐 Identity Center<br/><b>Central SSO Hub</b>"]
         
         %% Users (connect to Identity Center)
         A1["👨‍💼<br/><b>Admins</b>"]
