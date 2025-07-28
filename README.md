@@ -91,46 +91,61 @@ After: Automated, centralized access management
 ```mermaid
 graph TB
     %% Users and Groups
-    A1[👨‍💼 Admin Users<br/>admin@company.com] 
-    A2[👩‍💻 Developers<br/>dev1@company.com<br/>dev2@company.com]
-    A3[👁️ Auditors<br/>audit@company.com]
+    A1[👨‍💼 Admin Users]
+    A2[👩‍💻 Developers] 
+    A3[👁️ Auditors]
     
     %% Identity Center
-    B[🏢 AWS Identity Center<br/>Central Hub]
+    B[🏢 AWS Identity Center]
     
     %% Permission Sets
-    C1[🔑 AdminAccess<br/>Full Control]
-    C2[⚡ DeveloperAccess<br/>Dev Tools + Limits]
-    C3[👀 ReadOnlyAccess<br/>View Only]
+    C1[🔑 AdminAccess]
+    C2[⚡ DeveloperAccess]
+    C3[👀 ReadOnlyAccess]
+    
+    %% Account Assignments (Permission Set + User + Account)
+    D1[📋 Assignment 1<br/>AdminAccess + Admin Users<br/>→ Management Account]
+    D2[📋 Assignment 2<br/>AdminAccess + Admin Users<br/>→ Security Account]
+    D3[📋 Assignment 3<br/>DeveloperAccess + Developers<br/>→ Sandbox Account]
+    D4[📋 Assignment 4<br/>ReadOnlyAccess + Developers<br/>→ All Accounts]
+    D5[📋 Assignment 5<br/>ReadOnlyAccess + Auditors<br/>→ All Accounts]
     
     %% AWS Accounts
     E[☁️ Management Account<br/>419655711235]
     F[🧪 Sandbox Account<br/>512378128032]
     G[🔒 Security Account<br/>798807102550]
     
-    %% User to Identity Center
+    %% Flow connections
     A1 --> B
     A2 --> B
     A3 --> B
     
-    %% Identity Center to Permission Sets
     B --> C1
     B --> C2
     B --> C3
     
-    %% Permission Set Assignments to Accounts
-    C1 --> E
-    C1 --> G
-    C2 --> F
-    C3 --> E
-    C3 --> F
-    C3 --> G
+    %% Assignment creation (combines user + permission set)
+    A1 --> D1
+    C1 --> D1
+    A1 --> D2
+    C1 --> D2
+    A2 --> D3
+    C2 --> D3
+    A2 --> D4
+    C3 --> D4
+    A3 --> D5
+    C3 --> D5
     
-    %% Assignment Mappings (dotted lines show who gets what)
-    A1 -.-> C1
-    A2 -.-> C2
-    A2 -.-> C3
-    A3 -.-> C3
+    %% Assignments grant access to accounts
+    D1 --> E
+    D2 --> G
+    D3 --> F
+    D4 --> E
+    D4 --> F
+    D4 --> G
+    D5 --> E
+    D5 --> F
+    D5 --> G
     
     %% Styling
     style A1 fill:#e3f2fd,stroke:#1976d2
@@ -140,14 +155,14 @@ graph TB
     style C1 fill:#ffebee,stroke:#d32f2f
     style C2 fill:#e8f5e8,stroke:#388e3c
     style C3 fill:#e1f5fe,stroke:#0288d1
+    style D1 fill:#ffcdd2,stroke:#d32f2f
+    style D2 fill:#ffcdd2,stroke:#d32f2f
+    style D3 fill:#c8e6c9,stroke:#388e3c
+    style D4 fill:#b3e5fc,stroke:#0288d1
+    style D5 fill:#b3e5fc,stroke:#0288d1
     style E fill:#f3e5f5,stroke:#7b1fa2
     style F fill:#e8f5e8,stroke:#388e3c
     style G fill:#ffebee,stroke:#d32f2f
-    
-    %% Labels for clarity
-    classDef userGroup fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
-    classDef permissionSet fill:#fff3e0,stroke:#f57c00,stroke-width:2px
-    classDef account fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
 ```
 
 ---
