@@ -90,79 +90,37 @@ After: Automated, centralized access management
 
 ```mermaid
 graph TB
-    %% Users and Groups
-    A1[👨‍💼 Admin Users]
-    A2[👩‍💻 Developers] 
-    A3[👁️ Auditors]
+graph LR
+    %% Users (larger boxes)
+    A1["👨‍💼<br/><b>Admins</b>"]
+    A2["👩‍💻<br/><b>Developers</b>"] 
+    A3["👁️<br/><b>Auditors</b>"]
     
-    %% Identity Center
-    B[🏢 AWS Identity Center]
+    %% AWS Accounts (larger boxes)
+    E["☁️<br/><b>Management<br/>Account</b>"]
+    F["🧪<br/><b>Sandbox<br/>Account</b>"]
+    G["🔒<br/><b>Security<br/>Account</b>"]
     
-    %% Permission Sets
-    C1[🔑 AdminAccess]
-    C2[⚡ DeveloperAccess]
-    C3[👀 ReadOnlyAccess]
+    %% Connections with readable labels
+    A1 -.->|"🔑 Full Admin"| E
+    A1 -.->|"🔑 Full Admin"| G
     
-    %% Account Assignments (Permission Set + User + Account)
-    D1[📋 Assignment 1<br/>AdminAccess + Admin Users<br/>→ Management Account]
-    D2[📋 Assignment 2<br/>AdminAccess + Admin Users<br/>→ Security Account]
-    D3[📋 Assignment 3<br/>DeveloperAccess + Developers<br/>→ Sandbox Account]
-    D4[📋 Assignment 4<br/>ReadOnlyAccess + Developers<br/>→ All Accounts]
-    D5[📋 Assignment 5<br/>ReadOnlyAccess + Auditors<br/>→ All Accounts]
+    A2 -.->|"⚡ Developer Tools"| F
+    A2 -.->|"👀 Read Only"| E
+    A2 -.->|"👀 Read Only"| F
+    A2 -.->|"👀 Read Only"| G
     
-    %% AWS Accounts
-    E[☁️ Management Account<br/>419655711235]
-    F[🧪 Sandbox Account<br/>512378128032]
-    G[🔒 Security Account<br/>798807102550]
+    A3 -.->|"👀 Read Only"| E
+    A3 -.->|"👀 Read Only"| F
+    A3 -.->|"👀 Read Only"| G
     
-    %% Flow connections
-    A1 --> B
-    A2 --> B
-    A3 --> B
-    
-    B --> C1
-    B --> C2
-    B --> C3
-    
-    %% Assignment creation (combines user + permission set)
-    A1 --> D1
-    C1 --> D1
-    A1 --> D2
-    C1 --> D2
-    A2 --> D3
-    C2 --> D3
-    A2 --> D4
-    C3 --> D4
-    A3 --> D5
-    C3 --> D5
-    
-    %% Assignments grant access to accounts
-    D1 --> E
-    D2 --> G
-    D3 --> F
-    D4 --> E
-    D4 --> F
-    D4 --> G
-    D5 --> E
-    D5 --> F
-    D5 --> G
-    
-    %% Styling
-    style A1 fill:#e3f2fd,stroke:#1976d2
-    style A2 fill:#e8f5e8,stroke:#388e3c
-    style A3 fill:#fff3e0,stroke:#f57c00
-    style B fill:#f3e5f5,stroke:#7b1fa2
-    style C1 fill:#ffebee,stroke:#d32f2f
-    style C2 fill:#e8f5e8,stroke:#388e3c
-    style C3 fill:#e1f5fe,stroke:#0288d1
-    style D1 fill:#ffcdd2,stroke:#d32f2f
-    style D2 fill:#ffcdd2,stroke:#d32f2f
-    style D3 fill:#c8e6c9,stroke:#388e3c
-    style D4 fill:#b3e5fc,stroke:#0288d1
-    style D5 fill:#b3e5fc,stroke:#0288d1
-    style E fill:#f3e5f5,stroke:#7b1fa2
-    style F fill:#e8f5e8,stroke:#388e3c
-    style G fill:#ffebee,stroke:#d32f2f
+    %% Styling for readability
+    style A1 fill:#ffebee,stroke:#d32f2f,stroke-width:3px,font-size:14px
+    style A2 fill:#e8f5e8,stroke:#388e3c,stroke-width:3px,font-size:14px
+    style A3 fill:#e1f5fe,stroke:#0288d1,stroke-width:3px,font-size:14px
+    style E fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px,font-size:14px
+    style F fill:#e8f5e8,stroke:#388e3c,stroke-width:3px,font-size:14px
+    style G fill:#ffebee,stroke:#d32f2f,stroke-width:3px,font-size:14px
 ```
 
 ---
